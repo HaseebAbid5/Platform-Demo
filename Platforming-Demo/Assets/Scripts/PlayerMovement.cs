@@ -6,18 +6,20 @@ public class PlayerMovement : MonoBehaviour
 {
 
     float moveDir;
-    public int speed;
+    public float speed;
     float jumpForce;
     public int jump;
     public float range;
     public GameObject rayOrigin;
     float lastScale;
     RaycastHit2D hit;
+    float ogSpeed;
 
     // Use this for initialization
     void Start()
     {
         lastScale = 1;
+        ogSpeed = speed;
     }
 
     // Update is called once per frame
@@ -53,6 +55,14 @@ public class PlayerMovement : MonoBehaviour
             lastScale = moveDir;
 
         this.transform.localScale = new Vector2(lastScale, 1);
+
+        if (Input.GetButtonDown("Fire3"))
+            speed = speed * 1.3f;
+
+        if(Input.GetButtonUp("Fire3"))
+            speed = ogSpeed;
+
+        Debug.Log(speed);
 
         transform.position = new Vector2(transform.position.x + speed * Time.deltaTime * moveDir,
                                          transform.position.y);
