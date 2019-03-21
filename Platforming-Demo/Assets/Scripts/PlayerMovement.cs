@@ -32,8 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        hit = Physics2D.Raycast(rayOrigin.transform.position,
-                                new Vector2(0, -1), range);
+        
 
         if(Input.GetButtonDown("Fire3"))
             speed = speed *1.3f;
@@ -61,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        hit = Physics2D.Raycast(rayOrigin.transform.position,
+              new Vector2(0, -1), range);
+
         if (ladder && hit.collider.tag.Equals("ladder"))
         {
             if (Input.GetButtonDown("Jump"))
